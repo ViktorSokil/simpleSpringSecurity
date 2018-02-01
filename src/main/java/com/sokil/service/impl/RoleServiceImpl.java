@@ -14,6 +14,9 @@ public class RoleServiceImpl implements IRoleService {
 
     @Override
     public void saveRole(Role role) {
-        roleDao.save(role);
+        String roleInDB = roleDao.findByRole(role.getRole()).getRole();
+        if (!role.getRole().equals(roleInDB)){
+            roleDao.save(role);
+        }
     }
 }

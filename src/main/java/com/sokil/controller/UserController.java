@@ -18,7 +18,7 @@ public class UserController {
     @Autowired
     private IUserService userService;
 
-    @RequestMapping(value = "/allusers")
+    @RequestMapping(value = "/users/allusers")
     public List<UserDTO> listUsers(){
         return userDTOList(userService.getAllUsers());
     }

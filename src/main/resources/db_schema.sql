@@ -1,13 +1,15 @@
+DROP TABLE IF EXISTS users_roles;
+
 DROP TABLE IF EXISTS users;
 
 DROP TABLE IF EXISTS roles;
 
-DROP TABLE IF EXISTS users_roles;
+COMMIT ;
 
 CREATE TABLE  users
 (user_id INT NOT NULL AUTO_INCREMENT,
  user_name VARCHAR(20) NOT NULL,
- user_password VARCHAR(20) NOT NULL ,
+ user_password VARCHAR(61) NOT NULL ,
  PRIMARY KEY (user_id)
 );
 
@@ -24,14 +26,16 @@ PRIMARY KEY (user_id, role_id),
 FOREIGN KEY (user_id) REFERENCES users (user_id) ,
 FOREIGN KEY (role_id) REFERENCES roles (role_id));
 
+COMMIT ;
+
 DROP TABLE IF EXISTS persons;
+
 CREATE TABLE persons
 (person_id INT NOT NULL AUTO_INCREMENT,
 person_name VARCHAR(20) NOT NULL,
  person_address VARCHAR (20) NOT NULL,
  PRIMARY KEY (person_id)
  );
-
 
 COMMIT ;
 

@@ -25,7 +25,7 @@
         </form:form>
 
         <div>
-            <a href = "/allusers">All Users</a>
+            <a href = "/users/allusers">All Users</a>
         </div>
     </div>
 </body>

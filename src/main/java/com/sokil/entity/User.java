@@ -10,7 +10,7 @@ import java.util.Set;
 @Setter
 @NoArgsConstructor
 @EqualsAndHashCode(exclude = "roles")
-@ToString
+@ToString(exclude = "roles")
 @Entity
 @Table(name = "users")
 public class User {
