@@ -25,6 +25,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
         auth.jdbcAuthentication().dataSource(dataSource)
                 .usersByUsernameQuery("select username,password, enabled from users where username=?")
                 .authoritiesByUsernameQuery("select username, role from user_roles where username=?");
+
+        //also we cold use authenticationService instead of written above, implementing UserDetailsService and override
+        //method loadUserByUsername(String username)
+        //This approach will be preferred in real projects
+        //auth.userDetailsService(authenticationService);
     }
 
     @Override
@@ -47,7 +52,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
                 .csrf()
                 .and()
                 .rememberMe().tokenRepository(persistentTokenRepository())
-                .tokenValiditySeconds(50);
+                .tokenValiditySeconds(1000);
 
     }
 
