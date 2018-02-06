@@ -1,54 +1,32 @@
-DROP TABLE IF EXISTS users_roles;
+CREATE  TABLE users (
+  username VARCHAR(45) NOT NULL ,
+  password VARCHAR(45) NOT NULL ,
+  enabled TINYINT NOT NULL DEFAULT 1 ,
+  PRIMARY KEY (username));
 
-DROP TABLE IF EXISTS users;
+CREATE TABLE user_roles (
+  user_role_id int(11) NOT NULL AUTO_INCREMENT,
+  username varchar(45) NOT NULL,
+  role varchar(45) NOT NULL,
+  PRIMARY KEY (user_role_id),
+  UNIQUE KEY uni_username_role (role,username),
+  KEY fk_username_idx (username),
+  CONSTRAINT fk_username FOREIGN KEY (username) REFERENCES users (username));
 
-DROP TABLE IF EXISTS roles;
+INSERT INTO users(username,password,enabled)
+VALUES ('Viktor','123456', true);
 
-COMMIT ;
+INSERT INTO user_roles (username, role)
+VALUES ('Viktor', 'ROLE_USER');
+INSERT INTO user_roles (username, role)
+VALUES ('Viktor', 'ROLE_ADMIN');
 
-CREATE TABLE  users
-(user_id INT NOT NULL AUTO_INCREMENT,
- user_name VARCHAR(20) NOT NULL,
- user_password VARCHAR(61) NOT NULL ,
- PRIMARY KEY (user_id)
+CREATE TABLE persistent_logins (
+    username varchar(64) not null,
+    series varchar(64) not null,
+    token varchar(64) not null,
+    last_used timestamp not null,
+    PRIMARY KEY (series)
 );
 
-CREATE TABLE  roles
-(role_id INT NOT NULL AUTO_INCREMENT,
- role VARCHAR(20) NOT NULL,
- PRIMARY KEY (role_id)
-);
-
-CREATE TABLE  users_roles
-(user_id INT NOT NULL,
-role_id INT NOT NULL,
-PRIMARY KEY (user_id, role_id),
-FOREIGN KEY (user_id) REFERENCES users (user_id) ,
-FOREIGN KEY (role_id) REFERENCES roles (role_id));
-
 COMMIT ;
-
-DROP TABLE IF EXISTS persons;
-
-CREATE TABLE persons
-(person_id INT NOT NULL AUTO_INCREMENT,
-person_name VARCHAR(20) NOT NULL,
- person_address VARCHAR (20) NOT NULL,
- PRIMARY KEY (person_id)
- );
-
-COMMIT ;
-
-/*SELECT Users.user_id, Users.user_name, Roles.role
-                FROM users
-                JOIN users_roles ON users.user_id = users_roles.user_id
-                JOIN roles ON roles.role_id = users_roles.role_id
-                ORDER BY users.user_id;
-
-SELECT Users.user_id, users.user_name, roles.role
-FROM users, roles, users_roles
-WHERE users.user_id = users_roles.user_id AND
-roles.role_id = users_roles.role_id
-ORDER BY user_id;*/
-
-

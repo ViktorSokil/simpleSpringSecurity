@@ -1,4 +1,4 @@
-package com.sokil.configuration;
+package com.sokil.configuration.security;
 
 import org.springframework.security.web.context.AbstractSecurityWebApplicationInitializer;
 

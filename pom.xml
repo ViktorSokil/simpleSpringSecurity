@@ -12,7 +12,6 @@
     <properties>
         <springframework.version>4.3.12.RELEASE</springframework.version>
         <spring-data-jpa.version>1.11.10.RELEASE</spring-data-jpa.version>
-        <jackson.version>2.7.5</jackson.version>
         <hibernate.version>5.2.11.Final</hibernate.version>
         <!-- Generic properties -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -21,6 +20,9 @@
         <!-- Logging -->
         <logback.version>1.0.13</logback.version>
         <slf4j.version>1.7.5</slf4j.version>
+
+        <logback.version>1.0.13</logback.version>
+        <jcl-over-slf4j.version>1.7.5</jcl-over-slf4j.version>
 
     </properties>
 
@@ -56,11 +58,6 @@
             <artifactId>spring-orm</artifactId>
             <version>${springframework.version}</version>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.data</groupId>
-            <artifactId>spring-data-jpa</artifactId>
-            <version>${spring-data-jpa.version}</version>
-        </dependency>
 
         <!-- Spring Security Dependency -->
         <dependency>
@@ -73,17 +70,11 @@
             <artifactId>spring-security-config</artifactId>
             <version>4.2.3.RELEASE</version>
         </dependency>
-
-        <!-- Hibernate -->
+        <!-- Spring Security JSP Taglib -->
         <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-core</artifactId>
-            <version>${hibernate.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-entitymanager</artifactId>
-            <version>${hibernate.version}</version>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-taglibs</artifactId>
+            <version>4.2.3.RELEASE</version>
         </dependency>
 
         <dependency>
@@ -109,31 +100,6 @@
             <version>1.1.2</version>
         </dependency>
 
-        <!--Loggin-->
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-log4j12</artifactId>
-            <version>1.7.25</version>
-        </dependency>
-
-        <!--jackson for json response-->
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
-            <version>${jackson.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-core</artifactId>
-            <version>${jackson.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.datatype</groupId>
-            <artifactId>jackson-datatype-hibernate5</artifactId>
-            <version>${jackson.version}</version>
-        </dependency>
-
         <!-- Lombok -->
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -142,6 +108,18 @@
             <scope>provided</scope>
         </dependency>
 
+        <!-- logging, slf4j -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>jcl-over-slf4j</artifactId>
+            <version>${jcl-over-slf4j.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>${logback.version}</version>
+        </dependency>
     </dependencies>
 
     <build>
